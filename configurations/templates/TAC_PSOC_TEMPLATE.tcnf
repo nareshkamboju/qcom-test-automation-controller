@@ -1,0 +1,200 @@
+{
+    "author": "<your-name> <your-email>",
+    "buttons": [
+        {
+            "cellLocation": "0,0",
+            "command": "powerOnTheDevice",
+            "command_group": 4,
+            "name": "Power On",
+            "tab": "General",
+            "tooltip": "Powers ON the Device"
+        },
+        {
+            "cellLocation": "1,0",
+            "command": "powerOffTheDevice",
+            "command_group": 4,
+            "name": "Power Off",
+            "tab": "General",
+            "tooltip": "Powers OFF the Device"
+        },
+        {
+            "cellLocation": "2,0",
+            "command": "bootToEDL",
+            "command_group": 4,
+            "name": "Boot to EDL",
+            "tab": "General",
+            "tooltip": "Boots the device into Emergency Download Mode (EDL)"
+        }
+    ],
+    "creation_date": "<Www Mmm dd hh:mm:ss yyyy>",
+    "description": "<SoC / board short description> - PSoC",
+    "fileVersion": 1,
+    "form_dimension": "560,819",
+    "modification_date": "<Www Mmm dd hh:mm:ss yyyy>",
+    "name": "<Device Type Name>",
+    "pineVersion": 1,
+    "platform_id": 0,
+    "platform_type": "PSOC",
+    "reset_enabled": false,
+    "supportedFirmwareVer": [],
+    "tabs": [
+        {
+            "configurable": true,
+            "moveable": false,
+            "name": "General",
+            "ordinal": 0,
+            "user_tab": false,
+            "visible": true
+        },
+        {
+            "configurable": false,
+            "moveable": false,
+            "name": "Device Info",
+            "ordinal": 1,
+            "user_tab": false,
+            "visible": true
+        }
+    ],
+    "usb_descriptor": "",
+    "variables": [
+        {
+            "cellLocation": "0,0",
+            "default_value": "1300",
+            "label": "EDL timing (ms)",
+            "name": "edl",
+            "tooltip": "Boot to EDL hold time in ms",
+            "type": 1
+        },
+        {
+            "cellLocation": "1,0",
+            "default_value": "8000",
+            "label": "Fastboot timing (ms)",
+            "name": "fastboot",
+            "tooltip": "Boot to Fastboot hold time in ms",
+            "type": 1
+        },
+        {
+            "cellLocation": "2,0",
+            "default_value": "8000",
+            "label": "UEFI timing (ms)",
+            "name": "uefi",
+            "tooltip": "Boot to UEFI hold time in ms",
+            "type": 1
+        }
+    ],
+    "pins": [
+        {
+            "bus": null,
+            "chip_index": null,
+            "pin_number": "37",
+            "command": "pshold",
+            "name": "Force PS_HOLD High",
+            "help_hint": "Forces PS_HOLD high",
+            "enabled": true,
+            "inverted": false,
+            "initial_value": false,
+            "input": null,
+            "command_group": 3,
+            "group": "General",
+            "priority": -1,
+            "run_priority": "-1,-1"
+        },
+        {
+            "bus": null,
+            "chip_index": null,
+            "pin_number": "53",
+            "command": "battery",
+            "name": "Battery",
+            "help_hint": "Active-low: 1 removes battery/main rail, 0 applies it",
+            "enabled": true,
+            "inverted": true,
+            "initial_value": false,
+            "input": null,
+            "command_group": 3,
+            "group": "General",
+            "priority": -1,
+            "run_priority": "-1,-1"
+        },
+        {
+            "bus": null,
+            "chip_index": null,
+            "pin_number": "55",
+            "command": "usb0",
+            "name": "USB 0 (VBUS Only)",
+            "help_hint": "Active-low: 1 cuts VBUS, 0 applies it",
+            "enabled": true,
+            "inverted": true,
+            "initial_value": false,
+            "input": null,
+            "command_group": 3,
+            "group": "General",
+            "priority": -1,
+            "run_priority": "-1,-1"
+        },
+        {
+            "bus": null,
+            "chip_index": null,
+            "pin_number": "50",
+            "command": "pkey",
+            "name": "Power Key",
+            "help_hint": "Power button",
+            "enabled": true,
+            "inverted": false,
+            "initial_value": false,
+            "input": null,
+            "command_group": 3,
+            "group": "General",
+            "priority": -1,
+            "run_priority": "-1,-1"
+        },
+        {
+            "bus": null,
+            "chip_index": null,
+            "pin_number": "54",
+            "command": "pedl",
+            "name": "EDL (Emergency Download Mode)",
+            "help_hint": "EDL strap; assert while OFF, then power on",
+            "enabled": true,
+            "inverted": false,
+            "initial_value": false,
+            "input": null,
+            "command_group": 3,
+            "group": "General",
+            "priority": -1,
+            "run_priority": "-1,-1"
+        },
+        {
+            "bus": null,
+            "chip_index": null,
+            "pin_number": "34",
+            "command": "volup",
+            "name": "Volume Up",
+            "help_hint": "UEFI strap when held at power-on",
+            "enabled": true,
+            "inverted": false,
+            "initial_value": false,
+            "input": null,
+            "command_group": 3,
+            "group": "General",
+            "priority": -1,
+            "run_priority": "-1,-1"
+        },
+        {
+            "bus": null,
+            "chip_index": null,
+            "pin_number": "51",
+            "command": "voldn",
+            "name": "Volume Down",
+            "help_hint": "Fastboot strap when held at power-on",
+            "enabled": true,
+            "inverted": false,
+            "initial_value": false,
+            "input": null,
+            "command_group": 3,
+            "group": "General",
+            "priority": -1,
+            "run_priority": "-1,-1"
+        }
+    ],
+    "script": "def powerOffTheDevice()\r\n\tlogComment ====== powerOffTheDevice sequence start ======\r\n\r\n\tbattery 1\r\n\tusb0 1\r\n\r\n\tlogComment ====== powerOffTheDevice sequence finish ======\r\n\r\ndef powerOnTheDevice()\r\n\tlogComment ====== powerOnTheDevice sequence start ======\r\n\r\n\tdelay 500\r\n\tbattery 0\r\n\tdelay 900\r\n\tusb0 0\r\n\tdelay 30\r\n\r\n\tlogComment ====== powerOnTheDevice sequence finish ======\r\n\r\ndef powerOff()\r\n\tlogComment ====== powerOff start ======\r\n\r\n\tpowerOffTheDevice\r\n\r\n\tpkey 0\r\n\tvolup 0\r\n\tvoldn 0\r\n\tpedl 0\r\n\r\n\tlogComment ====== powerOff finish ======\r\n\r\ndef powerOn()\r\n\tlogComment ====== powerOn start ======\r\n\r\n\tpowerOff\r\n\r\n\tpowerOnTheDevice\r\n\r\n\tpkey 1\r\n\tdelay 800\r\n\tpkey 0\r\n\r\n\tlogComment ====== powerOn finish ======\r\n\r\ndef bootToEDL()\r\n\tlogComment ====== bootToEDL start ======\r\n\r\n\tpowerOffTheDevice\r\n\r\n\tpkey 0\r\n\tvolup 0\r\n\tvoldn 0\r\n\r\n\tpedl 1\r\n\r\n\tpowerOnTheDevice\r\n\r\n\tpkey 1\r\n\tdelay $edl\r\n\tpkey 0\r\n\r\n\tpedl 0\r\n\r\n\tlogComment ====== bootToEDL finish ======\r\n"
+}

@@ -177,6 +177,8 @@ Execute `build.sh` to generate executables:
 
 - [Build Using Qt Creator](./docs/getting-started/01-Build-Using-Qt-Creator.md)
 - [Python API Guide](./docs/bootcamp/01-Bootcamp.md)
+- [Onboarding a New Device Type (QTAC + LAVA)](./docs/getting-started/02-Onboarding-New-Device.md)
+- [Rules & Steps: Onboarding a New Device Type](./docs/getting-started/03-Device-Type-Onboarding-Rules.md)
 
 ## Support & Contributing
 
